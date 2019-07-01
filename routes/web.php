@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+/**
+ * ROUTE HALAMAN WEBSITE
+ */
+Route::get('/', 'Site\SiteController@homepage');
+Route::get('/register','Site\SiteController@register');
+Route::post('/postregister','Site\SiteController@postregister');
+//Route::get('/admin','Site\SiteController@register');
