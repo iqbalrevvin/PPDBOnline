@@ -21,4 +21,5 @@
 Route::get('/', 'Site\SiteController@homepage');
 Route::get('/register','Site\SiteController@register');
 Route::post('/postregister','Site\SiteController@postregister');
+Route::get('/about','Site\SiteController@about');
 //Route::get('/admin','Site\SiteController@register');

@@ -5,12 +5,12 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminPpdbDataSekolahController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminFormDataOrtuController extends \crocodicstudio\crudbooster\controllers\CBController {
 
-	    public function cbInit() {
+	   public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "nama_sekolah";
+			$this->title_field = "nama_lengkap";
 			$this->limit = "1";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
@@ -22,77 +22,55 @@
 			$this->button_delete = false;
 			$this->button_detail = true;
 			$this->button_show = false;
-			$this->button_filter = true;
+			$this->button_filter = false;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "sekolah";
+			$this->table = "siswa";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Jenjang","name"=>"jenjang"];
-			$this->col[] = ["label"=>"Npsn","name"=>"npsn"];
-			$this->col[] = ["label"=>"Nama Sekolah","name"=>"nama_sekolah"];
-			$this->col[] = ["label"=>"Logo","name"=>"logo","image"=>true];
-			$this->col[] = ["label"=>"Alamat","name"=>"alamat"];
+			$this->col[] = ["label"=>"Nama Lengkap","name"=>"nama_lengkap"];
+			$this->col[] = ["label"=>"Nama Ayah","name"=>"nama_ayah"];
+			$this->col[] = ["label"=>"NIK Ayah","name"=>"NIK_ayah"];
+			$this->col[] = ["label"=>"Nama Ibu","name"=>"nama_ibu"];
+			$this->col[] = ["label"=>"NIK Ibu","name"=>"NIK_ibu"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Jenjang','name'=>'jenjang','type'=>'select','validation'=>'required','width'=>'col-sm-3','dataenum'=>'PAUD;SD;SMP;SMA;SMK'];
-			$this->form[] = ['label'=>'Npsn','name'=>'npsn','type'=>'number','validation'=>'numeric','width'=>'col-sm-5'];
-			$this->form[] = ['label'=>'Nama Sekolah','name'=>'nama_sekolah','type'=>'text','validation'=>'required|min:5|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Logo','name'=>'logo','type'=>'upload','validation'=>'image','width'=>'col-sm-8'];
-			$this->form[] = ['label'=>'Rt','name'=>'rt','type'=>'number','validation'=>'required','width'=>'col-sm-1'];
-			$this->form[] = ['label'=>'Rw','name'=>'rw','type'=>'number','validation'=>'required','width'=>'col-sm-1'];
-			$this->form[] = ['label'=>'Alamat','name'=>'alamat','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Desa','name'=>'desa','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-8'];
-			$this->form[] = ['label'=>'Kecamatan','name'=>'kecamatan','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-8'];
-			$this->form[] = ['label'=>'Kota','name'=>'kota','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-8'];
-			$this->form[] = ['label'=>'Provinsi','name'=>'provinsi','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-8'];
-			$this->form[] = ['label'=>'Kode Pos','name'=>'kode_pos','type'=>'number','validation'=>'numeric','width'=>'col-sm-3'];
-			$this->form[] = ['label'=>'Yayasan','name'=>'yayasan','type'=>'text','validation'=>'required','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Sk Pendirian Sekolah','name'=>'sk_pendirian_sekolah','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-6'];
-			$this->form[] = ['label'=>'Tanggal Sk Pendirian','name'=>'tanggal_sk_pendirian','type'=>'date','width'=>'col-sm-3'];
-			$this->form[] = ['label'=>'Sk Izin Operasional','name'=>'sk_izin_operasional','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-6'];
-			$this->form[] = ['label'=>'Tanggal Sk Izin Operasional','name'=>'tanggal_sk_izin_operasional','type'=>'date','width'=>'col-sm-3'];
-			$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','validation'=>'required','width'=>'col-sm-9','help'=>'Masukan Url Facebook Sekolah (Contoh:https://facebook.com/smkikakartika)','placeholder'=>'Url Facebook Sekolah'];
-			$this->form[] = ['label'=>'No Telp','name'=>'no_telp','type'=>'number','validation'=>'required|numeric','width'=>'col-sm-9','help'=>'Masukan Url Instagram Sekolah (Contoh:https://instagram.com/smkikakartika)','placeholder'=>'Url Instagram Sekolah'];
-			$this->form[] = ['label'=>'Facebook','name'=>'facebook','type'=>'text','validation'=>'string','width'=>'col-sm-9','help'=>'Masukan Url Twitter Sekolah (Contoh:https://twitter.com/smkikakartika)','placeholder'=>'Url Twitter Sekolah'];
-			$this->form[] = ['label'=>'Instagram','name'=>'instagram','type'=>'text','validation'=>'string','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Twitter','name'=>'twitter','type'=>'text','validation'=>'string','width'=>'col-sm-9'];
-			$this->form[] = ['label'=>'Latitude','name'=>'latitude','type'=>'hidden','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Longitude','name'=>'longitude','type'=>'hidden','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Maps','name'=>'maps','type'=>'googlemaps','width'=>'col-sm-5'];
+			$this->form[] = ['label'=>'Nama Ayah','name'=>'nama_ayah','type'=>'text','validation'=>'required|min:1|max:100','width'=>'col-sm-7'];
+			$this->form[] = ['label'=>'NIK Ayah','name'=>'NIK_ayah','type'=>'text','validation'=>'min:16|max:16','width'=>'col-sm-7'];
+			$this->form[] = ['label'=>'Tahun Lahir Ayah','name'=>'tahun_lahir_ayah','type'=>'text','validation'=>'min:4|max:4','width'=>'col-sm-2'];
+			$this->form[] = ['label'=>'Pendidikan Ayah','name'=>'pendidikan_ayah','type'=>'select2','width'=>'col-sm-6','datatable'=>'pendidikan,nama'];
+			$this->form[] = ['label'=>'Pekerjaan Ayah','name'=>'pekerjaan_ayah','type'=>'select2','width'=>'col-sm-6','datatable'=>'pekerjaan,nama'];
+			$this->form[] = ['label'=>'Penghasilan Ayah','name'=>'penghasilan_ayah','type'=>'select2','width'=>'col-sm-6','datatable'=>'penghasilan,nama'];
+			$this->form[] = ['label'=>'Berkebutuhan Khusus Ayah','name'=>'berkebutuhan_khusus_ayah','type'=>'select2','width'=>'col-sm-6','datatable'=>'kebutuhan_khusus,nama'];
+			$this->form[] = ['label'=>'Nama Ibu','name'=>'nama_ibu','type'=>'text','validation'=>'required|min:1|max:100','width'=>'col-sm-7'];
+			$this->form[] = ['label'=>'NIK Ibu','name'=>'NIK_ibu','type'=>'text','validation'=>'min:16|max:16','width'=>'col-sm-7'];
+			$this->form[] = ['label'=>'Tahun Lahir Ibu','name'=>'tahun_lahir_ibu','type'=>'text','validation'=>'min:4|max:4','width'=>'col-sm-3'];
+			$this->form[] = ['label'=>'Pendidikan Ibu','name'=>'pendidikan_ibu','type'=>'select2','width'=>'col-sm-6','datatable'=>'pendidikan,nama'];
+			$this->form[] = ['label'=>'Pekerjaan Ibu','name'=>'pekerjaan_ibu','type'=>'select2','width'=>'col-sm-6','datatable'=>'pekerjaan,nama'];
+			$this->form[] = ['label'=>'Penghasilan Ibu','name'=>'penghasilan_ibu','type'=>'select2','width'=>'col-sm-6','datatable'=>'penghasilan,nama'];
+			$this->form[] = ['label'=>'Berkebutuhan Khusus_ibu','name'=>'berkebutuhan_khusus_ibu','type'=>'select2','width'=>'col-sm-6','datatable'=>'kebutuhan_khusus,nama'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Jenjang','name'=>'jenjang','type'=>'select','validation'=>'required','width'=>'col-sm-3','dataenum'=>'PAUD;SD;SMP;SMA;SMK'];
-			//$this->form[] = ['label'=>'Npsn','name'=>'npsn','type'=>'number','validation'=>'numeric','width'=>'col-sm-5'];
-			//$this->form[] = ['label'=>'Nama Sekolah','name'=>'nama_sekolah','type'=>'text','validation'=>'required|min:5|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Logo','name'=>'logo','type'=>'upload','validation'=>'image','width'=>'col-sm-8'];
-			//$this->form[] = ['label'=>'Rt','name'=>'rt','type'=>'number','validation'=>'required|min:2|max:3|string','width'=>'col-sm-1'];
-			//$this->form[] = ['label'=>'Rw','name'=>'rw','type'=>'number','validation'=>'required|min:2|max:3|string','width'=>'col-sm-1'];
-			//$this->form[] = ['label'=>'Alamat','name'=>'alamat','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Desa','name'=>'desa','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-8'];
-			//$this->form[] = ['label'=>'Kecamatan','name'=>'kecamatan','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-8'];
-			//$this->form[] = ['label'=>'Kota','name'=>'kota','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-8'];
-			//$this->form[] = ['label'=>'Provinsi','name'=>'provinsi','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-8'];
-			//$this->form[] = ['label'=>'Kode Pos','name'=>'kode_pos','type'=>'number','validation'=>'numeric','width'=>'col-sm-3'];
-			//$this->form[] = ['label'=>'Yayasan','name'=>'yayasan','type'=>'text','validation'=>'required','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Sk Pendirian Sekolah','name'=>'sk_pendirian_sekolah','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-6'];
-			//$this->form[] = ['label'=>'Tanggal Sk Pendirian','name'=>'tanggal_sk_pendirian','type'=>'date','width'=>'col-sm-3'];
-			//$this->form[] = ['label'=>'Sk Izin Operasional','name'=>'sk_izin_operasional','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-6'];
-			//$this->form[] = ['label'=>'Tanggal Sk Izin Operasional','name'=>'tanggal_sk_izin_operasional','type'=>'date','width'=>'col-sm-3'];
-			//$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','validation'=>'required','width'=>'col-sm-9','help'=>'Masukan Url Facebook Sekolah (Contoh:https://facebook.com/smkikakartika)','placeholder'=>'Url Facebook Sekolah'];
-			//$this->form[] = ['label'=>'No Telp','name'=>'no_telp','type'=>'number','validation'=>'required|numeric','width'=>'col-sm-9','help'=>'Masukan Url Instagram Sekolah (Contoh:https://instagram.com/smkikakartika)','placeholder'=>'Url Instagram Sekolah'];
-			//$this->form[] = ['label'=>'Facebook','name'=>'facebook','type'=>'text','validation'=>'string','width'=>'col-sm-9','help'=>'Masukan Url Twitter Sekolah (Contoh:https://twitter.com/smkikakartika)','placeholder'=>'Url Twitter Sekolah'];
-			//$this->form[] = ['label'=>'Instagram','name'=>'instagram','type'=>'text','validation'=>'string','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Twitter','name'=>'twitter','type'=>'text','validation'=>'string','width'=>'col-sm-9'];
-			//$this->form[] = ['label'=>'Latitude','name'=>'latitude','type'=>'hidden','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Longitude','name'=>'longitude','type'=>'hidden','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Maps','name'=>'maps','type'=>'googlemaps','width'=>'col-sm-5'];
+			//$this->form[] = ['label'=>'Nama Ayah','name'=>'nama_ayah','type'=>'text','validation'=>'required|min:1|max:100','width'=>'col-sm-7'];
+			//$this->form[] = ['label'=>'NIK Ayah','name'=>'NIK_ayah','type'=>'text','validation'=>'min:16|max:16','width'=>'col-sm-7'];
+			//$this->form[] = ['label'=>'Tahun Lahir Ayah','name'=>'tahun_lahir_ayah','type'=>'text','validation'=>'min:4|max:4','width'=>'col-sm-2'];
+			//$this->form[] = ['label'=>'Pendidikan Ayah','name'=>'pendidikan_ayah','type'=>'select2','width'=>'col-sm-6','datatable'=>'pendidikan,nama'];
+			//$this->form[] = ['label'=>'Pekerjaan Ayah','name'=>'pekerjaan_ayah','type'=>'select2','width'=>'col-sm-6','datatable'=>'pekerjaan,nama'];
+			//$this->form[] = ['label'=>'Penghasilan Ayah','name'=>'penghasilan_ayah','type'=>'select2','width'=>'col-sm-6','datatable'=>'penghasilan,nama'];
+			//$this->form[] = ['label'=>'Berkebutuhan Khusus Ayah','name'=>'berkebutuhan_khusus_ayah','type'=>'select2','width'=>'col-sm-6','datatable'=>'kebutuhan_khusus,nama'];
+			//$this->form[] = ['label'=>'Nama Ibu','name'=>'nama_ibu','type'=>'text','validation'=>'required|min:1|max:100','width'=>'col-sm-7'];
+			//$this->form[] = ['label'=>'NIK Ibu','name'=>'NIK_ibu','type'=>'text','validation'=>'min:16|max:16','width'=>'col-sm-7'];
+			//$this->form[] = ['label'=>'Tahun Lahir Ibu','name'=>'tahun_lahir_ibu','type'=>'text','validation'=>'min:4|max:4','width'=>'col-sm-3'];
+			//$this->form[] = ['label'=>'Pendidikan Ibu','name'=>'pendidikan_ibu','type'=>'select2','width'=>'col-sm-6'];
+			//$this->form[] = ['label'=>'Pekerjaan Ibu','name'=>'pekerjaan_ibu','type'=>'select2','width'=>'col-sm-6','datatable'=>'pekerjaan,nama'];
+			//$this->form[] = ['label'=>'Penghasilan Ibu','name'=>'penghasilan_ibu','type'=>'select2','width'=>'col-sm-6'];
+			//$this->form[] = ['label'=>'Berkebutuhan Khusus_ibu','name'=>'berkebutuhan_khusus_ibu','type'=>'select2','width'=>'col-sm-6','datatable'=>'kebutuhan_khusus,nama'];
 			# OLD END FORM
 
 			/* 
@@ -122,7 +100,7 @@
 	        | 
 	        */
 	        $this->addaction = array();
-
+	        $this->addaction[] = ['label'=>'Formulir','url'=>CRUDBooster::mainpath('edit/[id]'),'icon'=>'fa fa-file','color'=>'default'];
 
 	        /* 
 	        | ---------------------------------------------------------------------- 
@@ -279,7 +257,7 @@
 	    |
 	    */
 	    public function hook_query_index(&$query) {
-	        //Your code here
+	        $query->where('user_id', '=', CRUDBooster::myId());
 	            
 	    }
 

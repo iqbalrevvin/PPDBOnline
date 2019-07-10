@@ -20,9 +20,12 @@
 		<div class="container">
 			<div class="row justify-content-between align-items-center">
 				<div class="col-lg-6 col-md-6 search-course-left">
-					<div class="alert alert-success">
-						test Notifikasi
-					</div>
+					@if (session('success'))
+						<div class="alert alert-success">
+							Pendaftaran Berhasil, Silahkan Klik Menu <a href="{{ url('admin') }}">Login</a> Di Atas Untuk Mengisi Formulir Secara Lengkap!
+						</div>
+					@endif
+					
 					<h1 class="text-black">
 						Pendaftaran <br>
 						Akun PPDBOnline
@@ -33,19 +36,27 @@
 					
 				</div>
 				<div class="col-lg-4 col-md-6 search-course-right section-gap">
-					<form class="form-wrap" action="{{ url('postregister') }}">
+					<form class="form-wrap" action="{{ url('/postregister') }}" method="POST">
 						@csrf
 						{{-- <h4 class="text-white pb-20 text-center mb-30">Search for Available Course</h4> --}}
-						<small id="namaHelp" class="form-text text-danger">Email Error</small>	
+						@if($errors->has('email'))
+                    		<small id="namaHelp" class="form-text text-danger">{{ $errors->first('email') }}</small>
+                		@endif
 						<input type="email" class="form-control" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Isi Email'">
-						<small id="namaHelp" class="form-text text-danger">Password Error</small>
+						@if($errors->has('password'))
+                    		<small id="password" class="form-text text-danger">{{ $errors->first('password') }}</small>
+                		@endif
 						<input type="password" class="form-control" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Isi Password'">	
-						<small id="namaHelp" class="form-text text-danger">Nama Lengkap Error</small>
+						@if($errors->has('nama_lengkap'))
+                    		<small id="nama_lengkap" class="form-text text-danger">{{ $errors->first('nama_lengkap') }}</small>
+                		@endif
 						<input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Isi Nama Lengkap'">
-
-						<div class="form-select" id="service-select" name="jenis_kelamin">
-							<select>
-								<option datd-display="">Jenis Kelamin</option>
+						@if($errors->has('jenis_kelamin'))
+                    		<small id="jenis_kelamin" class="form-text text-danger">{{ $errors->first('jenis_kelamin') }}</small>
+                		@endif
+						<div class="form-select" id="service-select">
+							<select name="jenis_kelamin">
+								<option data-display="">Jenis Kelamin</option>
 								<option value="Laki-Laki">Laki-Laki</option>
 								<option value="Perempuan">Perempuan</option>
 							</select>

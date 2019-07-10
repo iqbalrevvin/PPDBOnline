@@ -35,8 +35,8 @@
 	        <ul class="nav-menu">
 	          <li><a href="{{ url('') }}">Beranda</a></li>
 	          <li><a href="{{ url('register') }}">Pendaftaran</a></li>
-	          <li><a href="courses.html">Pengumuman</a></li>
-	          <li><a href="events.html">Tentang</a></li>
+	          <li><a href="">Berita</a></li>
+	          <li><a href="{{ url('about') }}">Tentang</a></li>
 	          <li><a href="{{ url('admin') }}">Login/Masuk</a></li>
 	          {{-- <li><a href="gallery.html">Gallery</a></li>
 	          <li class="menu-has-children"><a href="">Blog</a>
